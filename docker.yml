@@ -6,6 +6,7 @@
       gather_facts: true
       vars:
         ansible_python_interpreter: /usr/bin/python3.7
+- tasks:
     - name: Stop Container
       shell: docker container stop cicd
     - name: Remove Container
@@ -14,3 +15,7 @@
       shell: docker image rmi amithrx/doc_image
     - name: Create New Container
       shell: docker container run -itd -p 80:80 --name cicd cicd
+    - name: Stop Container
+      shell: docker container stop cicd
+    - name: Remove Container
+      shell: docker container rm cicd
