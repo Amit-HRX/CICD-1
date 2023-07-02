@@ -1,12 +1,6 @@
 ---
 - hosts: all
 - tasks:
-    - name: Execute tasks on Linux hosts
-      hosts: linux_hosts
-      gather_facts: true
-      vars:
-        ansible_python_interpreter: /usr/bin/python3.7
-- tasks:
     - name: Stop Container
       shell: docker container stop cicd
     - name: Remove Container
