@@ -1,8 +1,11 @@
 ---
-- hosts: 172.31.0.150
+- hosts: all
 - tasks:
-    - name: Install Python
-      shell: yum install python3
+    - name: Execute tasks on Linux hosts
+      hosts: linux_hosts
+      gather_facts: true
+      vars:
+        ansible_python_interpreter: /usr/bin/python3.7
     - name: Stop Container
       shell: docker container stop cicd
     - name: Remove Container
@@ -11,4 +14,3 @@
       shell: docker image rmi amithrx/doc_image
     - name: Create New Container
       shell: docker container run -itd -p 80:80 --name cicd cicd
-    
